@@ -15,14 +15,10 @@ void bubble_sort(int *array, size_t size)
 
 	i = 0;
 
-	if (array == NULL)
+	if (array == NULL || size < 2)
 	{
 		return;
-	}
-	if (size == 1)
-	{
-		return;
-	}
+     	}
 	while (flag != INT_MAX)
 	{
 		tmp = INT_MAX;
