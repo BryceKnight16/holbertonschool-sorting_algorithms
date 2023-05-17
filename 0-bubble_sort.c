@@ -23,11 +23,11 @@ void bubble_sort(int *array, size_t size)
 	while (flag != INT_MAX)
 	{
 		tmp = INT_MAX;
-		while(i < size - 1)
+		while (i < size - 1)
 		{
 			if (array[i] > array[i + 1])
 			{
-				tmp = array [i + 1];
+				tmp = array[i + 1];
 				array[i + 1] = array[i];
 				array[i] = tmp;
 				print_array(array, size);
