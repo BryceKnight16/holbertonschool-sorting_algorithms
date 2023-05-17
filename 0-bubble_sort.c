@@ -19,7 +19,11 @@ void bubble_sort(int *array, size_t size)
 	{
 		return;
 	}
-
+	if (size == 1)
+	{
+		print_array(array, size);
+		return;
+	}
 	while (flag != INT_MAX)
 	{
 		tmp = INT_MAX;
