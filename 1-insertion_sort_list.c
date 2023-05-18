@@ -1,10 +1,5 @@
 #include "sort.h"
 
-listint_t *get_dnodeint_at_index(listint_t *head, unsigned int index);
-void swap_node(listint_t *a_node, listint_t *b_node);
-size_t listint_len(const listint_t *h);
-
-
 
 /**
  * insertion_sort_list - short description
@@ -15,29 +10,27 @@ size_t listint_len(const listint_t *h);
 
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *head;
 	listint_t *current;
-	listint_t *after;
+	listint_t *before;
 	size_t len, i, j;
 
-	head = *list;
-	len = listint_len(head);
-	if (head == NULL || len < 2)
+	len = listint_len(*list);
+	if (len < 2)
 	{
 		return;
 	}
 	i = 0;
 	while (i < len)
 	{
-		j = 0;
+		j = 1;
 		while (j < (len - 1))
 		{
-			current = get_dnodeint_at_index(head, j);
-			after = get_dnodeint_at_index(head, (j + 1));
-			if (current->n > after->n)
+			current = get_dnodeint_at_index(*list, j);
+			before = get_dnodeint_at_index(*list, (j - 1));
+			if (current->n < before->n)
 			{
-				swap_node(current, after);
-				print_list(head);
+				swap_node(list, before, current);
+				print_list(*list);
 			}
 			j = j + 1;
 		}
@@ -53,33 +46,23 @@ void insertion_sort_list(listint_t **list)
  * Return: type is void
  */
 
-void swap_node(listint_t *a_node, listint_t *b_node)
+void swap_node(listint_t **head, listint_t *a_node, listint_t *b_node)
 {
-	listint_t *temp;
+	listint_t *a_prev;
 
-	temp = malloc(sizeof(*temp));
-	if (temp == NULL)
-	{
-		exit(1);
-	}
-	temp->next = a_node->next;
-	temp->prev = a_node->prev;
-
+	a_prev = a_node->prev;
 	a_node->next = b_node->next;
-	a_node->prev = b_node;
-
-	b_node->next = a_node;
-	b_node->prev = temp->prev;
-
-	if (temp->prev != NULL)
-	{
-		temp->prev->next = b_node;
-	}
 	if (a_node->next != NULL)
 	{
 		a_node->next->prev = a_node;
 	}
-	free(temp);
+	if (a_node->prev == NULL)
+	{
+		*head = b_node;
+	}
+	a_node->prev = b_node;
+	b_node->next = a_node;
+	b_node->prev = a_prev;
 }
 
 /**
@@ -135,3 +118,4 @@ size_t listint_len(const listint_t *h)
 	}
 	return (counter);
 }
+
