@@ -46,9 +46,9 @@ void insertion_sort_list(listint_t **list)
 }
 
 /**
- * swap_node - short description
- * @current: a listint_t data type variable
- * @after: a listint_t data type variable
+ * swap_node - swapping two nodes 
+ * @a_node: a listint_t data type variable
+ * @b_node: a listint_t data type variable
  *
  * Return: type is void
  */
@@ -56,7 +56,7 @@ void insertion_sort_list(listint_t **list)
 void swap_node(listint_t *a_node, listint_t *b_node)
 {
 	listint_t *temp;
-	
+
 	temp = malloc(sizeof(*temp));
 	if (temp == NULL)
 	{
@@ -79,7 +79,7 @@ void swap_node(listint_t *a_node, listint_t *b_node)
 	{
 		a_node->next->prev = a_node;
 	}
-		free(temp);
+	free(temp);
 }
 
 /**
