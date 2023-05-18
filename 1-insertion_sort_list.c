@@ -46,7 +46,7 @@ void insertion_sort_list(listint_t **list)
 }
 
 /**
- * swap_node - swapping two nodes 
+ * swap_node - swapping two nodes
  * @a_node: a listint_t data type variable
  * @b_node: a listint_t data type variable
  *
