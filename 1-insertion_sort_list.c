@@ -18,8 +18,7 @@ void insertion_sort_list(listint_t **list)
 	listint_t *head;
 	listint_t *current;
 	listint_t *after;
-	size_t len;
-	int i, j;
+	size_t len, i, j;
 
 	head = *list;
 	len = listint_len(head);
@@ -33,8 +32,8 @@ void insertion_sort_list(listint_t **list)
 		j = 0;
 		while (j < (len - 1))
 		{
-			current = get_dnode_int_at_index(head, j);
-			after = get_dnode_int_at_index(head, (j + 1));
+			current = get_dnodeint_at_index(head, j);
+			after = get_dnodeint_at_index(head, (j + 1));
 			if (current->n > after->n)
 			{
 				swap_node(current, after);
