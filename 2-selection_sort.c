@@ -9,10 +9,10 @@
 
 void swap(int *a, int *b)
 {
-    int temp = *a;
+	int temp = *a;
 
-    *a = *b;
-    *b = temp;
+	*a = *b;
+	*b = temp;
 }
 
 /**
@@ -25,15 +25,17 @@ void swap(int *a, int *b)
 void selection_sort(int *array, size_t size)
 {
 	size_t current_index;
+
 	current_index = 0;
 	if (array == NULL)
 	{
 		return;
 	}
-	while ( current_index < (size - 1))
+	while (current_index < (size - 1))
 	{
 		size_t min_index = current_index;
 		size_t unsorted_index = current_index;
+
 		while (unsorted_index < size)
 		{
 			if (array[unsorted_index] < array[min_index])
