@@ -1,11 +1,5 @@
 #include "sort.h"
 
-listint_t *get_dnodeint_at_index(listint_t *head, unsigned int index);
-void swap_node(listint_t *a_node, listint_t *b_node);
-size_t listint_len(const listint_t *h);
-
-
-
 /**
  * insertion_sort_list - short description
  * @list: a listint_t **data type variable
@@ -36,7 +30,7 @@ void insertion_sort_list(listint_t **list)
 			after = get_dnodeint_at_index(head, (j + 1));
 			if (current->n > after->n)
 			{
-				swap_node(current, after);
+				swap_node(&head, current, after);
 				print_list(head);
 			}
 			j = j + 1;
@@ -53,33 +47,27 @@ void insertion_sort_list(listint_t **list)
  * Return: type is void
  */
 
-void swap_node(listint_t *a_node, listint_t *b_node)
+void swap_node(listint_t **head, listint_t *a_node, listint_t *b_node)
 {
-	listint_t *temp;
+	listint_t *a_prev;
 
-	temp = malloc(sizeof(*temp));
-	if (temp == NULL)
-	{
-		exit(1);
-	}
-	temp->next = a_node->next;
-	temp->prev = a_node->prev;
-
+	a_prev = a_node->prev;
 	a_node->next = b_node->next;
+	if (b_node->next != NULL)
+	{
+		b_node->next->prev = a_node;
+	}
+	if (a_node->prev == NULL)
+	{
+		*head = b_node;
+	}
+	else
+	{
+		a_node->prev->next = b_node;
+	}
 	a_node->prev = b_node;
-
 	b_node->next = a_node;
-	b_node->prev = temp->prev;
-
-	if (temp->prev != NULL)
-	{
-		temp->prev->next = b_node;
-	}
-	if (a_node->next != NULL)
-	{
-		a_node->next->prev = a_node;
-	}
-	free(temp);
+	b_node->prev = a_prev;
 }
 
 /**
