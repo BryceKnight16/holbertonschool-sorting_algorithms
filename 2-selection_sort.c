@@ -44,8 +44,11 @@ void selection_sort(int *array, size_t size)
 			}
 			unsorted_index = unsorted_index + 1;
 		}
-		swap(&array[current_index], &array[min_index]);
-		print_array(array, size);
+		if (min_index != current_index)
+		{
+			swap(&array[current_index], &array[min_index]);
+			print_array(array, size);
+		}
 		current_index = current_index + 1;
 	}
 }
