@@ -9,38 +9,33 @@
 
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *head;
 	listint_t *current;
 	listint_t *after;
-	size_t len, i, j;
 
-	head = *list;
-	len = listint_len(head);
-	if (head == NULL || len < 2)
+	if (*list == NULL || listint_len(*list) < 2)
 	{
 		return;
 	}
-	i = 0;
-	while (i < len)
+	current = *list;
+	while (current->next != NULL)
 	{
-		j = 0;
-		while (j < (len - 1))
+		after = current->next;
+		if (current->n > after->n)
 		{
-			current = get_dnodeint_at_index(head, j);
-			after = get_dnodeint_at_index(head, (j + 1));
-			if (current->n > after->n)
-			{
-				swap_node(&head, current, after);
-				print_list(head);
-			}
-			j = j + 1;
+			swap_node(list, current, after);
+			print_list(*list);
+			current = *list;
 		}
-		i = i + 1;
+		else
+		{
+			current = current->next;
+		}
 	}
 }
 
 /**
  * swap_node - swapping two nodes
+ * @head: double pointer to a listint_t data type variable
  * @a_node: a listint_t data type variable
  * @b_node: a listint_t data type variable
  *
