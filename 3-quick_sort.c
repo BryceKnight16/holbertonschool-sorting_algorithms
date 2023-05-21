@@ -34,13 +34,15 @@ int partition(int *array, int low, int high, size_t size)
 
 void quicksort_recursive(int *array, int low, int high, size_t size)
 {
-    if (low >= high)
-        return;
+	int i;
 
-    int i = partition(array, low, high, size);
-
-    quicksort_recursive(array, low, i - 1, size);
-    quicksort_recursive(array, i + 1, high, size);
+	if (low >= high)
+	{
+		return;
+	}
+	i = partition(array, low, high, size);
+        quicksort_recursive(array, low, i - 1, size);
+	quicksort_recursive(array, i + 1, high, size);
 }
 
 /**
